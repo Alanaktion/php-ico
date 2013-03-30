@@ -5,6 +5,8 @@ Copyright 2011-2013 Chris Jean & iThemes
 Licensed under GPLv2 or above
 
 Version 1.0.2
+
+Modified for direct icon output by Alan Hardman, 2013
 */
 
 class PHP_ICO {
@@ -132,6 +134,23 @@ class PHP_ICO {
 		}
 		
 		fclose( $fh );
+		
+		return true;
+	}
+	
+	/**
+	 * Output the ICO file data (not including HTTP headers)
+	 *
+	 * @return boolean true on success and false on failure.
+	 */
+	function output_ico() {
+		if ( ! $this->_has_requirements )
+			return false;
+		
+		if ( false === ( $data = $this->_get_ico_data() ) )
+			return false;
+			
+		echo $data;
 		
 		return true;
 	}
